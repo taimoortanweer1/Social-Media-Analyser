@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2PM</title>
+<link href="html/styles.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="html/images/icon.ico" /> 
+
+<style type="text/css">
+<!--
+.style1 {
+	font-size: 60px;
+	font-weight: bold;
+}
+-->
+</style>
+
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="html/jquery.js"></script>
+<script type="text/javascript" src="html/tweetsearch.js"></script>
+<script type="text/javascript" src="html/statistics.js"></script>
+
+<script type="text/javascript">
+google.load('visualization', '1', {'packages':['corechart']});
+
+function loadjsfile() 
+     {
+		var p=$('span.pos').length;
+	  var n=$('span.neg').length;
+	  var nn=$('span.neu').length;
+  var data = new google.visualization.arrayToDataTable([
+ 
+       ['type', 'total'],
+       ['Positive',p],
+       ['Negative', n],
+       ['Neutral', nn]
+     ]);
+ 
+ var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, { is3D: true, title: 'Sentiment Analysis', width: 400, height: 240, backgroundColor: "#fffde4", color: ['blue', 'red', 'green']});
+     }
+	 
+	
+</script> 
+
+<script type="text/javascript">
+<!--
+
+// -->
+</script><style type="text/css">
+<!--
+.style2 {font-size: 12px}
+.style3 {font-size: 14px}
+.style7 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #0b636b;
+	font-size: 24px;
+}
+.style8 {font-size: 22px}
+-->
+</style>
+</head>
+
+<body id="main">
+<div id="mainWrap">
+<div id="mainPanel">
+  <div class="style1" id="logoWrap">2PM</div>
+  <!--tab1 -->
+  
+  <div class="style2" id="tab">
+ <button id="S_web"  title="Search on web"><span class="style3">Search Web</span></button> 
+  <button id="S_twitter" title="Search tweets" ><span class="style3">Search twitter</span></button>
+   
+ 
+  </div>
+  </div>
+  
+<div id="searchtab" style="margin-top:160px; margin-bottom:10px">
+  <div id="search1">
+   
+  
+  	<input type="text" id="txtSearchTerm" size="50"  />
+
+ 
+	<select name="results1" id="numb1">
+  <option value="10" >Results per page</option>
+  <option value="9">9</option>
+  <option value="8">8</option>
+  <option value="7">7</option>
+  <option value="6">6</option>
+  <option value="5">5</option>
+  <option value="4">4</option>
+  <option value="3">3</option>
+  <option value="2">2</option>
+  <option value="1">1</option>
+  </select>	
+  
+  	<button id="btnSearch"  style="border: 1px solid #0b636b;
+  background:#CBF19C;
+  color: #0b636b;
+  font: bold 13px 'Trebuchet MS';
+  padding: 6px;
+  cursor: pointer;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  margin-left:4px">Search Web</button>
+  
+  
+  
+ <select name="analyze" id="analyze" style="visibility:hidden" >
+  <option value="0" >Select to Analyze</option>
+  <option value="1" >Analyze All</option>
+  <option value="2" >Analyze below URL</option>
+   <option value="9" >Analyze selected Urls</option>
+    <option value="10" id="s10" >Best of Urls</option>
+	<option value="11"  id="s11" >Worst of Urls</option>
+   <option value="3"style="display:none" id="s1">Analyze crawled Url/Urls</option>
+  <option value="4"style="display:none" id="s2">Analyze all Url/Urls </option>
+  <option value="5"style="display:none" id="s3">Show Crawled urls sentiment</option>
+   <option value="7"style="display:none" id="s5">Show All  Crawled urls </option>
+  <option value="6"style="display:none" id="s4" >Anaysis: Seed vs. Crawl</option>
+   <option value="8"style="display:none" id="s6" >Anaysis: Searched Urls vs. Crawl</option>
+   
+  
+   
+	</select>
+		
+			
+			
+<button id="clear_web" style="visibility:hidden"  ></button>	
+			
+    </div>
+	
+	
+	
+ <div id="leftPanel">
+  <table width="100%" border="0">
+  <tr ><td colspan="2" align="right"><h2 align="center" id="re" style="visibility:hidden" >Results</h2></td>
+  <td colspan="2" align="left"><select name="sort" id="sort" style="visibility:hidden"  >
+  <option value="0" >Sort</option>
+  <option value="1" >Ascending</option>
+  <option value="2" >Descending</option>
+ 
+	</select></td></tr>
+ <tr > 
+    <td width="25%" class="padded" id="searchResult" style="color:#000066; font-weight:500" >&nbsp;</td>
+    <td width="23%" class="padded" id="load_link">  </td>
+    <td class="padded" id=""><button id="back" style="visibility:hidden"  >Back</button><span id="lblPageNumber" style="display:none;"></span><button id="next" style="visibility:hidden" >Next</button></td>
+	<td></td>
+ </tr>
+  <tr><td colspan="4" id="output3"><input name="checkAll" type="checkbox"  id="checkAll" style="visibility:hidden"  />
+  <button id="add" style="visibility:hidden" >Add as seed</button>
+  <button id="s_s" style="visibility:hidden"  >Show Seed</button>
+			
+			
+			
+			
+  	
+  <button id="crawl" style="visibility:hidden">Crawl</button>
+  <button id="options"  title="Options for crawl" style="visibility:hidden" ><img src="html/images/icon_arrowd.gif" style=" float:left; width:15px; height:15px"/></button>
+  
+  
+  
+			</td></tr>
+			
+			<tr id="c_o"  style="visibility:hidden; width:100%"><td > <select name="results" id="numb" >
+  <option value="10" >Crawled links, default 10</option>
+  <option value="20">20</option>
+  <option value="30">30</option>
+  <option value="40">40</option>
+  <option value="50">50</option>
+   <option value="a">All</option></select></td>
+  <td> <select name="dep" id="dep" >
+  <option value="1" >Depth of crawl, default 1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  </select></td><td width="27%">
+  
+  <select name="time" id="time">
+   <option value="10" >Set time for crawl, Deafult 10s</option>
+    <option value="20">20 seconds</option>
+  <option value="30">30 seconds</option>
+  <option value="40">40 seconds</option>
+  <option value="50">50 seconds</option>
+ <option value="60">60 seconds</option>
+ <option value="self">add yourself</option>
+  </select></td><td width="25%">
+  <input name="time" type="text" disabled value="seconds"  id="time1" size="5" maxlength="10"  /></td></tr>
+  <tr><td colspan="4" id="output"></td></tr>
+   
+   <tr><td colspan="4" id="output2"></td></tr>
+</table>
+    </div>
+	
+	
+ <div id="rightPanel" >
+ 
+ 
+  </div>
+      <!--tab 1 -->
+
+  </div>
+  
+  
+  <div id="tweets" style="display:none">
+<div id="search"><input type="text" id="txtSearchTerm1" size="50"  />
+  <select name="results" id="result_type">
+  <option value="recent" >Recent</option>
+  <option value="mixed">Mixed</option>
+  <option value="popular">Popular</option>
+ </select>
+ 
+  <select name="numb" id="numb">
+  <option value="10" >10</option>
+  <option value="20">20</option>
+  <option value="30">30</option>
+  <option value="40" >40</option>
+  <option value="50">50</option>
+  <option value="60">60</option>
+  <option value="70" >70</option>
+  <option value="80">80</option>
+  <option value="90">90</option>
+  <option value="100" >100</option>
+ 
+ </select>
+ 
+ 
+			<button id="btnSearch1" style="border: 1px solid #00ACED;
+  background:url(html/images/twitter_logo-transparent.gif) no-repeat right;
+  color:#00ACED;
+  font: bold 11px 'Trebuchet MS';
+  padding: 6px;
+  cursor: pointer;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  margin-left:10px" >Get&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+		
+			<button id="analyze1" style="visibility:hidden;border: 1px solid #00ACED;
+  background:#FFFFFF;
+  color:#00ACED;
+  font: bold 11px 'Trebuchet MS';
+  padding: 6px;
+  cursor: pointer;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  margin-left:10px" onclick="loadjsfile()" >Analyze</button>
+  <button id="clear_web1" style="visibility:hidden"  ></button>
+  </div>
+
+ <div id="res" align="justify" ></div>
+  <div id="chart_div"></div>
+</div>
+
+
+  
+  
+  
+  
+ <div id="footPanel">
+  <div class="nav">
+   <ul>
+    <li><a href="#">Home</a></li>
+    <li><div class="blank">|</div></li>
+    <li><a href="#">About Us</a></li>
+    <li><div class="blank">|</div></li>
+    <li><a href="#">Suppor</a></li>
+    <li><div class="blank">|</div></li>
+    <li><a href="#">Forum</a></li>
+    <li><div class="blank">|</div></li>
+    <li><a href="#">Development</a></li>
+    <li><div class="blank">|</div></li>
+    <li><a href="#">Conact Us</a></li>
+   </ul>
+  </div>
+  <div class="copyright">© Copyright. All Rights Reserved.</div>
+  
+ </div>
+ 
+</div>
+</div>
+<script type="text/javascript">
+    var mGoogleApiKey = "AIzaSyChlk97718EeAjTTlV-61DILW5LmcFAUAI";
+    var mGoogleCustomSearchKey = "013248693167833960746:sgkuzr-am-w";
+</script>
+<script type="text/javascript" src="html/jquery.js"></script>
+<script type="text/javascript" src="html/googlesearch.js"></script>
+
+
+</body>
+</html>

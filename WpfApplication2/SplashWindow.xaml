@@ -1,0 +1,195 @@
+﻿<Window x:Class="WpfApplication2.SplashWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SplashWindow" Height="300" Width="300" WindowState="Maximized"
+        Loaded="Window_Loaded" ShowInTaskbar="True" WindowStyle="None" >
+    <Window.Resources>
+
+        <Storyboard x:Key="StoryBoard">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0.0"  To="1.0" Duration="0:0:2.0" BeginTime="0:0:1">
+
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="StoryBoard1">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0.0"  To="1.0" Duration="0:0:2.0" BeginTime="0:0:3">
+
+            </DoubleAnimation>
+        </Storyboard>
+
+
+
+        <Storyboard x:Key="StoryBoard2">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0.0"  To="1.0" Duration="0:0:2.0" BeginTime="0:0:5">
+
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="StoryBoard3">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0.0"  To="1.0" Duration="0:0:2.0" BeginTime="0:0:7">
+
+            </DoubleAnimation>
+        </Storyboard>
+        
+        <Style TargetType="Image" x:Key="animatedList1">
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:5.0" BeginTime="0:0:1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Image" x:Key="animatedList" >
+  
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard  Storyboard="{StaticResource StoryBoard}">
+                            
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Image" x:Key="a1" >
+
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard  Storyboard="{StaticResource StoryBoard1}">
+
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Image" x:Key="a2" >
+
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard  Storyboard="{StaticResource StoryBoard2}">
+
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Image" x:Key="a3" >
+
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard  Storyboard="{StaticResource StoryBoard3}">
+
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard Duration="00:00:10" Storyboard.TargetProperty="Opacity">
+                    <DoubleAnimation From="0" To="1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+   
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+   
+        <Button Visibility="Collapsed" x:Name="myButton" Content="Click" VerticalAlignment="Bottom" FontSize="16" Click="myButton_Click" Grid.ColumnSpan="2">
+            </Button>
+         
+        <StackPanel Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+        
+            <Image Margin="0,0,0,25" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="myImage" Visibility="Visible" Opacity="0.0" Source="/WpfApplication2;component/Resources/logo.png" Style="{StaticResource animatedList}" Width="400" Height="190" Grid.ColumnSpan="2" />
+
+            <TextBlock Margin="0,25,0,0" Opacity="0.0" x:Name="productName" HorizontalAlignment="Center" Foreground="#333333" FontFamily="Britannic" FontWeight="Bold" FontSize="40" Text="CARE Social Media Analyzer">
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation BeginTime="0:0:2" Duration="00:00:2" From="0" To="1" AccelerationRatio="0.5" DecelerationRatio="0.5" Storyboard.TargetName="productName" Storyboard.TargetProperty="Opacity"/>
+                            </Storyboard>                            
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </TextBlock.Triggers>
+
+            </TextBlock>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,40" VerticalAlignment="Bottom">
+            <Image Visibility="Visible" Height="100" Opacity="0.0" Style="{StaticResource a1}" Width="100" Name="fb_image" Margin="53,0,0,0" Source="/WpfApplication2;component/Resources/facebook_icon.png" Stretch="Fill" >
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation BeginTime="0:0:4" Duration="00:00:1" From="0" To="1" AccelerationRatio="0.5" DecelerationRatio="0.5" Storyboard.TargetName="fb_image" Storyboard.TargetProperty="Opacity"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Image.Triggers>
+
+            </Image>
+            
+            <Image Visibility="Visible" Height="100" Opacity="0.0" Style="{StaticResource a2}" Width="100" Name="twitter_image" Margin="53,0,0,0" Source="/WpfApplication2;component/Resources/twitter.png" Stretch="Fill" >
+
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation BeginTime="0:0:5" Duration="00:00:1" From="0" To="1" AccelerationRatio="0.5" DecelerationRatio="0.5" Storyboard.TargetName="twitter_image" Storyboard.TargetProperty="Opacity"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Image.Triggers>
+
+            </Image>
+            <Image Visibility="Visible" Height="100" Opacity="0.0" Style="{StaticResource a3}" Width="100" Name="google_plus_image" Margin="53,0,0,0" Source="/WpfApplication2;component/Resources/google_plus_icon.png" Stretch="Fill" >
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Completed="DoubleAnimation_Completed" BeginTime="0:0:6" Duration="00:00:2" From="0" To="1" AccelerationRatio="0.5" DecelerationRatio="0.5" Storyboard.TargetName="google_plus_image" Storyboard.TargetProperty="Opacity"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Image.Triggers>
+
+            </Image>
+        </StackPanel>
+        
+    </Grid>
+</Window>
